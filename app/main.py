@@ -24,3 +24,16 @@ def add_user(user: User):
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="user_id already exists")
     users.append(user)
     return user
+
+@app.patch("/api/users/{user_id}") // Update user
+def update_user(user_id: int):
+    if any(u.user_id == user.user_id for u in users):
+        // add code to update user
+        return user
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+
+@app.Delete("/api/users/{user_id}") // Delete user
+    if any(u.user_id == user.user_id for u in users):
+        users.Delete(user)
+        raise HTTPException(status_code=status.HTTP_204_NO_CONTENT)
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
